@@ -118,7 +118,7 @@ def run_model():
 
     # batch and pad the target tokens
     target_tokens = make_target_batch(tokenizer, device, target_texts)
-    print('{} Generated sentences loaded'.format(target_texts))
+    print('{} Generated sentences loaded'.format(len(target_texts)))
           
     for _ in trange(5): # different random restarts of the trigger
         total_vocab_size = 50257  # total number of subword pieces in the GPT-2 model
@@ -189,6 +189,7 @@ def run_model():
         # Print final trigger and get 10 samples from the model
         print("Loss: " + str(best_loss.data.item()))
         print(tokenizer.decode(trigger_tokens))
+        
         for _ in range(10):
             out = sample_from_gpt2.sample_sequence(
                 model=model, length=40,
