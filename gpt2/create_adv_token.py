@@ -6,8 +6,9 @@ import numpy as np
 from pytorch_transformers import GPT2Tokenizer, GPT2LMHeadModel
 import sample_from_gpt2
 sys.path.append('..')
-import attacks
-import utils
+import attacks as attacks
+import utils as utils
+from tqdm import tqdm, trange
 
 # returns the wordpiece embedding weight matrix
 def get_embedding_weight(language_model):
@@ -69,10 +70,13 @@ def run_model():
 
     tokenizer = GPT2Tokenizer.from_pretrained('gpt2')
     model = GPT2LMHeadModel.from_pretrained('gpt2')
+    print("model loaded")
     model.eval()
     model.to(device)
+    print("model to device")
 
     add_hooks(model) # add gradient hooks to embeddings
+    print("hooks added")
     embedding_weight = get_embedding_weight(model) # save the word embedding matrix
 
     # Warning. the below contains extremely offensive content.
@@ -114,8 +118,9 @@ def run_model():
 
     # batch and pad the target tokens
     target_tokens = make_target_batch(tokenizer, device, target_texts)
-
-    for _ in range(10): # different random restarts of the trigger
+    print('{} Generated sentences loaded'.format(target_texts))
+          
+    for _ in trange(5): # different random restarts of the trigger
         total_vocab_size = 50257  # total number of subword pieces in the GPT-2 model
         trigger_token_length = 6  # how many subword pieces in the trigger
         batch_size = target_tokens.shape[0]

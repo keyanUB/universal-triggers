@@ -12,7 +12,7 @@ from allennlp.data.iterators import BucketIterator, BasicIterator
 from allennlp.nn.util import move_to_device
 tokenizer = WordTokenizer()
 sys.path.append('..')
-import utils
+import gpt2.utils as utils
 
 def evaluate_batch_squad(model, batch, trigger_token_ids, vocab, span_start, span_end):
     """

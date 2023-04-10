@@ -4,9 +4,9 @@ from allennlp.data.token_indexers import SingleIdTokenIndexer
 from allennlp.models import load_archive
 from allennlp.data.iterators import BasicIterator
 sys.path.append('..')
-import utils
+import gpt2.utils as utils
 import squad_utils
-import attacks
+import gpt2.attacks as attacks
 
 def main():
     # Read the SQuAD validation dataset using a word tokenizer

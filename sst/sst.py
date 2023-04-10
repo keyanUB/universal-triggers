@@ -18,8 +18,8 @@ from allennlp.training.trainer import Trainer
 from allennlp.common.util import lazy_groups_of
 from allennlp.data.token_indexers import SingleIdTokenIndexer
 sys.path.append('..')
-import utils
-import attacks
+import gpt2.utils as utils
+import gpt2.attacks as attacks
 
 # Simple LSTM classifier that uses the final hidden state to classify Sentiment. Based on AllenNLP
 class LstmClassifier(Model):

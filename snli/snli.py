@@ -7,8 +7,8 @@ from allennlp.models import load_archive
 from allennlp.data.tokenizers import WordTokenizer
 from allennlp.data.iterators import BasicIterator
 sys.path.append('..')
-import utils
-import attacks
+import gpt2.utils as utils
+import gpt2.attacks as attacks
 
 def main():
     # Load SNLI dataset
